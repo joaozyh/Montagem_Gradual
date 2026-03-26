@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opera GX Design System</title>
+  <style>
+    @font-face {
+      font-family: "Underwave";
+      src: url("../fonts/3ebfaf1c4dcf4f3b0255.3a56dbb96ab7.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Be Vietnam Pro";
+      src: url("../fonts/b21a8376d942833de6fc.91f7ad7162e8.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Be Vietnam Pro";
+      src: url("../fonts/067e5dad13c9184c2ba1.c0d25ced7cb5.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-0: #06070d;
+      --bg-1: #0f1220;
+      --bg-2: #171a2d;
+      --surface: #121522;
+      --surface-soft: #1b2033;
+      --line: #2a2f45;
+      --text: #f2f3fb;
+      --text-soft: #c0c4d7;
+      --brand: #fa1e4e;
+      --brand-soft: #ff5f86;
+      --brand-deep: #b40f36;
+      --accent-cyan: #4ec5ff;
+      --accent-lime: #9cff6a;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --space-1: 8px;
+      --space-2: 12px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --space-5: 32px;
+      --space-6: 48px;
+      --space-7: 64px;
+      --shadow-brand: 0 0 24px rgba(250, 30, 78, 0.25);
+      --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Be Vietnam Pro", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% -10%, rgba(250, 30, 78, 0.25), transparent 28%),
+        radial-gradient(circle at 95% 10%, rgba(78, 197, 255, 0.22), transparent 25%),
+        linear-gradient(160deg, var(--bg-0), var(--bg-1) 42%, var(--bg-2));
+      letter-spacing: 0.01em;
+    }
+
+    .page {
+      width: min(1120px, 100% - 32px);
+      margin: 0 auto;
+      padding: 24px 0 72px;
+    }
+
+    .hero {
+      margin-top: 8px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(130deg, rgba(250, 30, 78, 0.12), rgba(10, 12, 24, 0.6) 40%, rgba(78, 197, 255, 0.08));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--brand-soft);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Underwave", sans-serif;
+      font-size: clamp(2rem, 6vw, 3.7rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--brand);
+      text-shadow: 0 0 24px rgba(250, 30, 78, 0.35);
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      max-width: 70ch;
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--brand-soft);
+      background: rgba(250, 30, 78, 0.12);
+    }
+
+    section {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(10, 13, 24, 0.72);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-family: "Underwave", sans-serif;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #ffd7e1;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .section-body {
+      padding: 20px 22px 24px;
+    }
+
+    .token-grid,
+    .component-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .token-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .token {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .token-swatch {
+      height: 88px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .token-meta {
+      padding: 10px 12px 12px;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--text-soft);
+    }
+
+    .token-meta strong {
+      display: block;
+      color: var(--text);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .type-demo {
+      display: grid;
+      gap: 12px;
+    }
+
+    .type-demo .h {
+      font-family: "Underwave", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .h-xl { font-size: clamp(2.2rem, 7vw, 4rem); color: var(--brand); }
+    .h-lg { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #ffb3c6; }
+    .h-md { font-size: clamp(1.3rem, 3.5vw, 2rem); color: #ffe5ec; }
+
+    .body-lg { font-size: 1.06rem; color: var(--text); line-height: 1.6; margin: 0; }
+    .body-sm { font-size: 0.9rem; color: var(--text-soft); line-height: 1.6; margin: 0; }
+
+    .space-row {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .space-row code {
+      color: #ffe2ea;
+      font-size: 12px;
+    }
+
+    .space-bar {
+      background: linear-gradient(90deg, var(--brand), #ff789c);
+      border-radius: 999px;
+      height: 10px;
+      box-shadow: var(--shadow-brand);
+    }
+
+    .component-grid {
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font: 700 13px/1 "Be Vietnam Pro", sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(140deg, var(--brand), var(--brand-deep));
+      box-shadow: var(--shadow-brand);
+    }
+
+    .btn-secondary {
+      color: #f4f7ff;
+      background: linear-gradient(140deg, #3856ff, #232f9f);
+      box-shadow: 0 0 24px rgba(56, 86, 255, 0.25);
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .btn-danger {
+      color: #2b040c;
+      background: linear-gradient(140deg, #ff8aa7, #ff5982);
+    }
+
+    .field {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #0e1120;
+      color: var(--text);
+      font: 500 14px/1.3 "Be Vietnam Pro", sans-serif;
+      outline: 0;
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .field:focus {
+      border-color: var(--brand-soft);
+      box-shadow: 0 0 0 3px rgba(250, 30, 78, 0.2);
+    }
+
+    .badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+
+    .badge-live {
+      color: #ffdce6;
+      border-color: rgba(255, 95, 134, 0.45);
+      background: rgba(250, 30, 78, 0.2);
+    }
+
+    .badge-labs {
+      color: #e4f8ff;
+      border-color: rgba(78, 197, 255, 0.4);
+      background: rgba(78, 197, 255, 0.18);
+    }
+
+    .badge-safe {
+      color: #efffe4;
+      border-color: rgba(156, 255, 106, 0.45);
+      background: rgba(156, 255, 106, 0.2);
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(250, 30, 78, 0.17), transparent 55%),
+        linear-gradient(180deg, #14192b, #0f1322);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h4 {
+      margin: 0 0 8px;
+      color: #ffe2ea;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .stats {
+      margin-top: 12px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .bar {
+      height: 8px;
+      border-radius: 999px;
+      background: #0a0e1a;
+      overflow: hidden;
+      border: 1px solid #252b42;
+    }
+
+    .bar > i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--brand), #ff9eb7);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    .bar.cpu > i { width: 46%; }
+    .bar.ram > i { width: 61%; }
+    .bar.net > i { width: 33%; }
+
+    @keyframes pulse {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.15); }
+    }
+
+    .table-wrap {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+
+    th {
+      color: #ffd9e3;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 11px;
+      background: #14192b;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td {
+      color: var(--text-soft);
+      background: #101426;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(7, 9, 16, 0.75);
+      color: #aeb3c9;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 780px) {
+      .page {
+        width: calc(100% - 20px);
+        padding-top: 14px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .section-head,
+      .section-body {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="kicker">assets/design-system.html</p>
+      <h1>Opera GX Design System</h1>
+      <p>
+        A single source of truth for visual tokens and UI primitives.
+        Built to match the GX direction: high contrast, sharp accents, and strong hierarchy.
+      </p>
+      <nav class="quick-links" aria-label="Quick links">
+        <a class="chip" href="#tokens">Tokens</a>
+        <a class="chip" href="#components">Components</a>
+        <a class="chip" href="#patterns">Patterns</a>
+      </nav>
+    </header>
+
+    <section id="tokens">
+      <div class="section-head">
+        <h2>Tokens</h2>
+        <p>Foundations for color, typography, spacing, shape, and feedback states.</p>
+      </div>
+      <div class="section-body">
+        <h3>Color</h3>
+        <div class="token-grid">
+          <article class="token"><div class="token-swatch" style="background:#06070d"></div><div class="token-meta"><strong>--bg-0</strong>#06070D</div></article>
+          <article class="token"><div class="token-swatch" style="background:#121522"></div><div class="token-meta"><strong>--surface</strong>#121522</div></article>
+          <article class="token"><div class="token-swatch" style="background:#2a2f45"></div><div class="token-meta"><strong>--line</strong>#2A2F45</div></article>
+          <article class="token"><div class="token-swatch" style="background:#fa1e4e"></div><div class="token-meta"><strong>--brand</strong>#FA1E4E</div></article>
+          <article class="token"><div class="token-swatch" style="background:#ff5f86"></div><div class="token-meta"><strong>--brand-soft</strong>#FF5F86</div></article>
+          <article class="token"><div class="token-swatch" style="background:#4ec5ff"></div><div class="token-meta"><strong>--accent-cyan</strong>#4EC5FF</div></article>
+          <article class="token"><div class="token-swatch" style="background:#9cff6a"></div><div class="token-meta"><strong>--accent-lime</strong>#9CFF6A</div></article>
+          <article class="token"><div class="token-swatch" style="background:#f2f3fb"></div><div class="token-meta"><strong>--text</strong>#F2F3FB</div></article>
+        </div>
+
+        <h3 style="margin-top:18px">Typography</h3>
+        <div class="type-demo">
+          <p class="h h-xl">Display Hero</p>
+          <p class="h h-lg">Section Heading</p>
+          <p class="h h-md">Component Title</p>
+          <p class="body-lg">Body large: used in primary content blocks and key descriptions.</p>
+          <p class="body-sm">Body small: metadata, helper text, and low-priority copy.</p>
+        </div>
+
+        <h3 style="margin-top:18px">Spacing</h3>
+        <div class="space-row"><code>--space-1 (8px)</code><div class="space-bar" style="width:8px"></div></div>
+        <div class="space-row"><code>--space-2 (12px)</code><div class="space-bar" style="width:12px"></div></div>
+        <div class="space-row"><code>--space-3 (16px)</code><div class="space-bar" style="width:16px"></div></div>
+        <div class="space-row"><code>--space-4 (24px)</code><div class="space-bar" style="width:24px"></div></div>
+        <div class="space-row"><code>--space-5 (32px)</code><div class="space-bar" style="width:32px"></div></div>
+        <div class="space-row"><code>--space-6 (48px)</code><div class="space-bar" style="width:48px"></div></div>
+      </div>
+    </section>
+
+    <section id="components">
+      <div class="section-head">
+        <h2>Components</h2>
+        <p>Core elements for actions, form controls, and semantic messaging.</p>
+      </div>
+      <div class="section-body">
+        <div class="component-grid">
+          <article class="panel">
+            <h3>Buttons</h3>
+            <div class="row">
+              <button class="btn btn-primary" type="button">Primary</button>
+              <button class="btn btn-secondary" type="button">Secondary</button>
+              <button class="btn btn-ghost" type="button">Ghost</button>
+              <button class="btn btn-danger" type="button">Danger</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Badges</h3>
+            <div class="row">
+              <span class="badge badge-live">Live</span>
+              <span class="badge badge-labs">Labs</span>
+              <span class="badge badge-safe">Secure</span>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Inputs</h3>
+            <div class="row" style="display:grid;gap:10px;">
+              <input class="field" type="text" value="Opera GX">
+              <input class="field" type="email" placeholder="name@domain.com">
+              <select class="field" aria-label="Theme">
+                <option>Theme: Classic GX</option>
+                <option>Theme: Cyberpunk</option>
+                <option>Theme: Violet Nebula</option>
+              </select>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Status Card</h3>
+            <article class="card">
+              <h4>GX Control Snapshot</h4>
+              <p>Resource profile for active browser session. Limits can be tuned in real time.</p>
+              <div class="stats" aria-hidden="true">
+                <div class="bar cpu"><i></i></div>
+                <div class="bar ram"><i></i></div>
+                <div class="bar net"><i></i></div>
+              </div>
+            </article>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="patterns">
+      <div class="section-head">
+        <h2>Patterns</h2>
+        <p>Practical combinations of tokens and components for faster page assembly.</p>
+      </div>
+      <div class="section-body">
+        <div class="card">
+          <h4>CTA Cluster</h4>
+          <p>
+            Recommended pairings: one strong primary CTA + one neutral fallback.
+            Keep vertical spacing on 24px rhythm and avoid extra visual noise near actions.
+          </p>
+          <div class="row" style="margin-top:12px;">
+            <button class="btn btn-primary" type="button">Download GX</button>
+            <button class="btn btn-ghost" type="button">Compare Features</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table aria-label="Token references">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Use</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>--brand</td>
+                <td>Primary action and highlights</td>
+                <td>#FA1E4E</td>
+              </tr>
+              <tr>
+                <td>--surface</td>
+                <td>Card and panel backgrounds</td>
+                <td>#121522</td>
+              </tr>
+              <tr>
+                <td>--line</td>
+                <td>Borders and separators</td>
+                <td>#2A2F45</td>
+              </tr>
+              <tr>
+                <td>--text-soft</td>
+                <td>Secondary copy and metadata</td>
+                <td>#C0C4D7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Version: 1.0<br>
+      Scope: landing tokens + core web components.<br>
+      Location: <code>assets/design-system.html</code>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1086 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Videoaulas de Montagem Automotiva com IA</title>
+  <meta name="description" content="Aprenda a criar efeitos de montagem automotiva profissionais com IA, mesmo comeÃ§ando do zero na ediÃ§Ã£o.">
+  <style>
+    @font-face {
+      font-family: "Underwave";
+      src: url("../fonts/3ebfaf1c4dcf4f3b0255.3a56dbb96ab7.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Be Vietnam Pro";
+      src: url("../fonts/b21a8376d942833de6fc.91f7ad7162e8.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Be Vietnam Pro";
+      src: url("../fonts/067e5dad13c9184c2ba1.c0d25ced7cb5.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-0: #06070d;
+      --bg-1: #0f1220;
+      --bg-2: #171a2d;
+      --surface: #121522;
+      --surface-soft: #1b2033;
+      --line: #2a2f45;
+      --text: #f2f3fb;
+      --text-soft: #c0c4d7;
+      --brand: #fa1e4e;
+      --brand-soft: #ff5f86;
+      --brand-deep: #b40f36;
+      --accent-cyan: #4ec5ff;
+      --accent-lime: #9cff6a;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --space-1: 8px;
+      --space-2: 12px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --space-5: 32px;
+      --space-6: 48px;
+      --space-7: 64px;
+      --shadow-brand: 0 0 24px rgba(250, 30, 78, 0.25);
+      --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Be Vietnam Pro", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% -10%, rgba(250, 30, 78, 0.25), transparent 28%),
+        radial-gradient(circle at 95% 10%, rgba(78, 197, 255, 0.22), transparent 25%),
+        linear-gradient(160deg, var(--bg-0), var(--bg-1) 42%, var(--bg-2));
+      letter-spacing: 0.01em;
+    }
+
+    .page {
+      width: min(1180px, 100% - 32px);
+      margin: 0 auto;
+      padding: clamp(14px, 2.2vw, 28px) 0 clamp(48px, 6vw, 72px);
+    }
+
+    .hero {
+      margin-top: 8px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: #000;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-shell {
+      display: grid;
+      gap: clamp(16px, 2.2vw, 28px);
+      align-items: start;
+    }
+
+    .hero-copy {
+      min-width: 0;
+      display: grid;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .hero-media {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 0;
+      background: #000;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
+    .hero-media::before {
+      content: none;
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 18% 8%, rgba(78, 197, 255, 0.24), transparent 36%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-spin {
+      position: relative;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .hero-spin.dragging {
+      cursor: grabbing;
+    }
+
+    .hero-spin img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+      border-radius: 0;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    .kicker {
+      margin: 0 auto 8px;
+      color: var(--brand-soft);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-align: center;
+      align-self: center;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Underwave", sans-serif;
+      font-size: clamp(1.65rem, 4.2vw, 2.9rem);
+      line-height: 1.02;
+      text-transform: uppercase;
+      color: var(--brand);
+      text-shadow: 0 0 24px rgba(250, 30, 78, 0.35);
+      max-width: 24ch;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 56ch;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.52;
+    }
+
+    .hero .lead {
+      margin-top: 2px;
+    }
+
+    .hero-benefits {
+      margin-top: 4px;
+      max-width: 54ch;
+    }
+
+    .hero-benefits li {
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      line-height: 1.38;
+    }
+
+    .hero .cta-wrap {
+      margin-top: 4px;
+    }
+
+    .hero .full-cta {
+      width: 100%;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--brand-soft);
+      background: rgba(250, 30, 78, 0.12);
+    }
+
+    section {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(10, 13, 24, 0.72);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: clamp(16px, 2.2vw, 22px);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-family: "Underwave", sans-serif;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #ffd7e1;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .section-body {
+      padding: clamp(16px, 2.2vw, 22px) clamp(16px, 2.2vw, 22px) clamp(18px, 2.6vw, 24px);
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 14px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font: 700 13px/1 "Be Vietnam Pro", sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(140deg, var(--brand), var(--brand-deep));
+      box-shadow: var(--shadow-brand);
+    }
+
+    .btn-secondary {
+      color: #f4f7ff;
+      background: linear-gradient(140deg, #3856ff, #232f9f);
+      box-shadow: 0 0 24px rgba(56, 86, 255, 0.25);
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+
+    .badge-live {
+      color: #ffdce6;
+      border-color: rgba(255, 95, 134, 0.45);
+      background: rgba(250, 30, 78, 0.2);
+    }
+
+    .badge-labs {
+      color: #e4f8ff;
+      border-color: rgba(78, 197, 255, 0.4);
+      background: rgba(78, 197, 255, 0.18);
+    }
+
+    .badge-safe {
+      color: #efffe4;
+      border-color: rgba(156, 255, 106, 0.45);
+      background: rgba(156, 255, 106, 0.2);
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(250, 30, 78, 0.17), transparent 55%),
+        linear-gradient(180deg, #14192b, #0f1322);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3,
+    .card h4 {
+      margin: 0 0 8px;
+      color: #ffe2ea;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text);
+      margin: 0;
+      max-width: 70ch;
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .benefit-list,
+    .danger-list,
+    .check-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .benefit-list li,
+    .danger-list li,
+    .check-list li {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .benefit-list li::before,
+    .check-list li::before {
+      content: "âœ“ ";
+      color: var(--accent-lime);
+      font-weight: 700;
+    }
+
+    .danger-list li::before {
+      content: "âœ• ";
+      color: #ff8aa7;
+      font-weight: 700;
+    }
+
+    .quote {
+      margin: 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--brand);
+      border-radius: 10px;
+      background: rgba(250, 30, 78, 0.12);
+      color: #ffe1e9;
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .cta-wrap {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cta-note {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    .offer-box {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: linear-gradient(145deg, rgba(250, 30, 78, 0.18), rgba(9, 11, 21, 0.75) 52%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .offer-box .label {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      color: #ffd7e1;
+      font-weight: 700;
+    }
+
+    .offer-box .price {
+      margin: 10px 0 4px;
+      font-family: "Underwave", sans-serif;
+      font-size: clamp(1.9rem, 8vw, 3.4rem);
+      line-height: 1;
+      color: #fff2f7;
+      text-transform: uppercase;
+      text-shadow: 0 0 22px rgba(255, 95, 134, 0.35);
+    }
+
+    .offer-box .tiny {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .comparison .card h3 {
+      font-size: 13px;
+    }
+
+    .comparison .card ul {
+      margin: 0;
+      padding-left: 16px;
+      color: var(--text-soft);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .comparison .card ul li + li {
+      margin-top: 6px;
+    }
+
+    .comparison .negative {
+      border-color: rgba(255, 95, 134, 0.35);
+      background: linear-gradient(180deg, rgba(90, 16, 31, 0.35), #151725);
+    }
+
+    .comparison .positive {
+      border-color: rgba(156, 255, 106, 0.35);
+      background: linear-gradient(180deg, rgba(27, 58, 23, 0.35), #151725);
+    }
+
+    .full-cta {
+      width: 100%;
+      justify-content: center;
+      font-size: 14px;
+      padding: 14px 18px;
+    }
+
+    .impact {
+      margin: 0;
+      font-size: 1.15rem;
+      color: #fff1f5;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(7, 9, 16, 0.75);
+      color: #aeb3c9;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (min-width: 880px) {
+      .comparison {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .hero-shell {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 26px;
+        align-items: stretch;
+      }
+
+      .hero-copy {
+        gap: 12px;
+        justify-items: start;
+      }
+
+      .hero .full-cta {
+        width: auto;
+        min-width: 280px;
+      }
+
+      .hero-media {
+        justify-self: end;
+      }
+    }
+
+    @media (max-width: 979px) {
+      .hero {
+        padding: 20px;
+      }
+
+      .hero-copy {
+        justify-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .hero h1 {
+        margin-inline: auto;
+        max-width: 22ch;
+        font-size: clamp(1.45rem, 7.2vw, 2.35rem);
+      }
+
+      .hero p,
+      .hero-benefits {
+        max-width: 100%;
+      }
+
+      .hero .lead {
+        max-width: 60ch;
+      }
+
+      .hero-benefits {
+        width: 100%;
+        max-width: 560px;
+      }
+
+      .hero .cta-wrap,
+      .quick-links {
+        justify-content: center;
+      }
+
+      .hero-media {
+        padding: 0;
+        max-width: min(420px, 100%);
+        margin-inline: auto;
+      }
+
+      .hero-spin img {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .page {
+        width: calc(100% - 20px);
+        padding-top: 14px;
+      }
+
+      .hero {
+        padding: 18px;
+      }
+
+      .section-head,
+      .section-body {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .quick-links {
+        gap: 8px;
+      }
+
+      .cta-wrap .btn {
+        width: 100%;
+      }
+
+      .hero .full-cta {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .kicker {
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
+
+      .badge {
+        font-size: 10px;
+        padding: 4px 8px;
+      }
+
+      .card,
+      .panel,
+      .offer-box {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero" id="topo">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <p class="kicker">Videoaulas: Efeito Montagem Gradual</p>
+          <h1>Como Criar Vídeos Profissionais com IA do Zero</h1>
+          <p class="lead">
+            Aprenda um mÃ©todo simples, direto e replicÃ¡vel para produzir vÃ­deos que prendem atenÃ§Ã£o,
+            geram impacto e elevam seu nÃ­vel como editor, mesmo sem experiÃªncia com inteligÃªncia artificial.
+          </p>
+          <ul class="benefit-list hero-benefits">
+            <li>Sem experiÃªncia com IA</li>
+            <li>Sem precisar ser expert em ediÃ§Ã£o</li>
+            <li>MÃ©todo simples e replicÃ¡vel para aplicar hoje</li>
+          </ul>
+          <div class="cta-wrap">
+            <a class="btn btn-primary full-cta" href="#comprar">Quero ComeÃ§ar Agora</a>
+          </div>
+          <nav class="quick-links" aria-label="Recursos">
+            <span class="badge badge-live">Acesso Imediato</span>
+            <span class="badge badge-labs">MÃ©todo PrÃ¡tico</span>
+            <span class="badge badge-safe">Passo a Passo</span>
+            <a class="chip" href="../assents/design-system.html" target="_blank" rel="noopener">Design System</a>
+          </nav>
+        </div>
+        <figure class="hero-media">
+          <div class="hero-spin" id="hero-spin" aria-label="Animacao 360 de montagem automotiva">
+            <img
+              id="hero-spin-frame"
+              src="../images/Frame/frame000.jpg"
+              width="720"
+              height="1280"
+              alt="Sequencia de frames de montagem automotiva em visual 360."
+              loading="eager"
+              decoding="async"
+              fetchpriority="high">
+          </div>
+        </figure>
+      </div>
+    </header>
+
+    <section aria-labelledby="dor-title">
+      <div class="section-head">
+        <h2 id="dor-title">2. A Dor Que Te Trava</h2>
+        <p>Se vocÃª se identifica com isso, estÃ¡ na hora de virar o jogo.</p>
+      </div>
+      <div class="section-body stack">
+        <ul class="danger-list">
+          <li>Seus vÃ­deos nÃ£o causam impacto e sÃ£o ignorados.</li>
+          <li>Falta criatividade na hora de montar efeitos novos.</li>
+          <li>VocÃª perde horas editando e o resultado continua comum.</li>
+          <li>DÃ¡ sensaÃ§Ã£o de estar ficando para trÃ¡s enquanto outros evoluem.</li>
+        </ul>
+        <p class="quote">Quem nÃ£o dominar IA na ediÃ§Ã£o vai assistir outros ocuparem o espaÃ§o que poderia ser seu.</p>
+        <div class="cta-wrap">
+          <a class="btn btn-primary" href="#comprar">Eu NÃ£o Quero Ficar Para TrÃ¡s</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="promessa-title">
+      <div class="section-head">
+        <h2 id="promessa-title">3. A Promessa</h2>
+        <p>Transforme sua ediÃ§Ã£o e entregue vÃ­deos com nÃ­vel profissional.</p>
+      </div>
+      <div class="section-body component-grid">
+        <article class="card">
+          <h3>Criar Efeitos Profissionais</h3>
+          <p>Aprenda a montar cenas que parecem de editor avanÃ§ado, mesmo comeÃ§ando do zero.</p>
+        </article>
+        <article class="card">
+          <h3>Usar IA de Forma Simples</h3>
+          <p>VocÃª vai entender como gerar material visual com prompts prontos, sem complicaÃ§Ã£o tÃ©cnica.</p>
+        </article>
+        <article class="card">
+          <h3>Economizar Tempo</h3>
+          <p>Pare de ficar horas testando aleatoriamente. Tenha um caminho claro para executar rÃ¡pido.</p>
+        </article>
+        <article class="card">
+          <h3>Se Destacar no Mercado</h3>
+          <p>Entregue uma qualidade que chama atenÃ§Ã£o e te posiciona acima da mÃ©dia.</p>
+        </article>
+        <article class="panel" style="grid-column:1/-1;">
+          <h3>Mesmo ComeÃ§ando do Zero</h3>
+          <p class="impact">VocÃª nÃ£o precisa dominar IA antes. O mÃ©todo foi pensado para iniciantes e intermediÃ¡rios que querem evoluir de verdade.</p>
+        </article>
+      </div>
+      <div class="section-body" style="padding-top:0;">
+        <div class="cta-wrap">
+          <a class="btn btn-secondary" href="#comprar">Quero Essa TransformaÃ§Ã£o</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="inclui-title">
+      <div class="section-head">
+        <h2 id="inclui-title">4. O Que EstÃ¡ Incluso</h2>
+        <p>ConteÃºdo objetivo para vocÃª aprender, aplicar e evoluir rapidamente.</p>
+      </div>
+      <div class="section-body component-grid">
+        <article class="panel"><h3>Videoaulas Completas</h3><p>MÃ³dulo por mÃ³dulo, sem pular etapa.</p></article>
+        <article class="panel"><h3>Passo a Passo Detalhado</h3><p>Acompanhe exatamente o que fazer em cada parte do processo.</p></article>
+        <article class="panel"><h3>ExplicaÃ§Ã£o Simples das IAs</h3><p>VocÃª entende o essencial sem linguagem tÃ©cnica complicada.</p></article>
+        <article class="panel"><h3>Prompts Prontos</h3><p>Copie e cole para gerar resultados com agilidade.</p></article>
+        <article class="panel"><h3>Estrutura Organizada</h3><p>Aprendizado em sequÃªncia para evitar confusÃ£o.</p></article>
+        <article class="panel"><h3>AplicaÃ§Ã£o Direta</h3><p>Foco total em montar efeitos automotivos que realmente impressionam.</p></article>
+      </div>
+      <div class="section-body" style="padding-top:0;">
+        <div class="cta-wrap">
+          <a class="btn btn-primary" href="#comprar">Quero Acesso ao ConteÃºdo Completo</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="objecoes-title">
+      <div class="section-head">
+        <h2 id="objecoes-title">5. Quebra de ObjeÃ§Ãµes</h2>
+        <p>Entenda claramente se esse treinamento Ã© para vocÃª.</p>
+      </div>
+      <div class="section-body component-grid">
+        <article class="card">
+          <h3>Para Quem Ã‰</h3>
+          <ul class="check-list">
+            <li>Iniciantes que querem sair do bÃ¡sico.</li>
+            <li>Editores intermediÃ¡rios travados na criatividade.</li>
+            <li>Quem quer dominar IA sem enrolaÃ§Ã£o.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Para Quem NÃ£o Ã‰</h3>
+          <ul class="danger-list">
+            <li>Quem procura atalho sem aplicar nada.</li>
+            <li>Quem nÃ£o estÃ¡ disposto a praticar.</li>
+            <li>Quem quer resultado sem executar o mÃ©todo.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="section-body" style="padding-top:0;">
+        <div class="cta-wrap">
+          <a class="btn btn-secondary" href="#comprar">Sou o PÃºblico Certo</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="emocional-title">
+      <div class="section-head">
+        <h2 id="emocional-title">6. BenefÃ­cios Emocionais</h2>
+        <p>Mais que tÃ©cnica: reconhecimento, confianÃ§a e evoluÃ§Ã£o profissional.</p>
+      </div>
+      <div class="section-body component-grid">
+        <article class="card">
+          <h3>Impressione com Seu NÃ­vel</h3>
+          <p>Imagine mostrar seus vÃ­deos e ouvir: "Como vocÃª fez isso?".</p>
+        </article>
+        <article class="card">
+          <h3>Ganhe Mais Engajamento</h3>
+          <p>Cenas mais impactantes aumentam retenÃ§Ã£o, comentÃ¡rios e compartilhamentos.</p>
+        </article>
+        <article class="card">
+          <h3>CresÃ§a Como Editor</h3>
+          <p>Destrave seu potencial e construa autoridade no que vocÃª entrega.</p>
+        </article>
+      </div>
+      <div class="section-body" style="padding-top:0;">
+        <div class="cta-wrap">
+          <a class="btn btn-primary" href="#comprar">Quero Evoluir de Verdade</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="comprar" aria-labelledby="oferta-title">
+      <div class="section-head">
+        <h2 id="oferta-title">7. Oferta</h2>
+        <p>MÃ©todo validado para acelerar seu resultado e te diferenciar no mercado.</p>
+      </div>
+      <div class="section-body component-grid">
+        <article class="card">
+          <h3>Valor Percebido</h3>
+          <ul class="check-list">
+            <li>MÃ©todo validado para criaÃ§Ã£o de efeitos automotivos.</li>
+            <li>Economia de tempo com fluxo claro de produÃ§Ã£o.</li>
+            <li>Diferencial competitivo para se destacar.</li>
+          </ul>
+        </article>
+        <article class="offer-box">
+          <p class="label">Investimento de Hoje</p>
+          <p class="price">R$ ___,__</p>
+          <p class="tiny">ou em atÃ© 12x de R$ __,__</p>
+          <div class="cta-wrap">
+            <a class="btn btn-primary full-cta" href="#">Garantir Minha Vaga Agora</a>
+          </div>
+          <p class="cta-note">Acesso imediato apÃ³s confirmaÃ§Ã£o.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="escassez-title">
+      <div class="section-head">
+        <h2 id="escassez-title">8. Escassez</h2>
+        <p>Essa condiÃ§Ã£o nÃ£o precisa ficar disponÃ­vel para sempre.</p>
+      </div>
+      <div class="section-body stack">
+        <p class="quote">O acesso pode sair do ar sem aviso e o preÃ§o pode aumentar a qualquer momento.</p>
+        <p class="lead">Se vocÃª quer entrar com a melhor condiÃ§Ã£o, o momento certo Ã© agora.</p>
+        <div class="cta-wrap">
+          <a class="btn btn-primary" href="#">Garantir Antes Que Suba</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="final-title">
+      <div class="section-head">
+        <h2 id="final-title">9. DecisÃ£o Final</h2>
+        <p>Escolha entre continuar travado ou dar o prÃ³ximo passo na sua evoluÃ§Ã£o.</p>
+      </div>
+      <div class="section-body">
+        <div class="comparison">
+          <article class="card negative">
+            <h3>Continuar Travado</h3>
+            <ul>
+              <li>VÃ­deos sem impacto e sem diferencial.</li>
+              <li>Horas perdidas em tentativa e erro.</li>
+              <li>SensaÃ§Ã£o constante de estar atrasado.</li>
+            </ul>
+          </article>
+          <article class="card positive">
+            <h3>Evoluir Agora</h3>
+            <ul>
+              <li>Efeitos profissionais com mÃ©todo replicÃ¡vel.</li>
+              <li>Uso prÃ¡tico de IA, mesmo sem experiÃªncia.</li>
+              <li>Mais destaque, engajamento e confianÃ§a.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="cta-wrap" style="margin-top:16px;">
+          <a class="btn btn-primary full-cta" href="#">Quero Acessar as Videoaulas e Evoluir Hoje</a>
+        </div>
+        <p class="cta-note">Sem enrolaÃ§Ã£o. Sem mistÃ©rio. SÃ³ o passo a passo para vocÃª aplicar e crescer.</p>
+      </div>
+    </section>
+
+    <footer>
+      Landing page de vendas pronta para produÃ§Ã£o.<br>
+      Base visual alinhada ao design system em <code>assents/design-system.html</code>.
+    </footer>
+  </main>
+  <script>
+    (function () {
+      "use strict";
+
+      var FRAME_COUNT = 240;
+      var ROTATION_INTERVAL_MS = 42;
+      var DRAG_SENSITIVITY_PX = 3;
+      var BASE_PATHS = [
+        "../images/Frame/",
+        "./images/Frame/",
+        "file:///C:/Users/KR%20PIX/Downloads/sites/Opera/images/Frame/"
+      ];
+
+      var spinRoot = document.getElementById("hero-spin");
+      var spinImage = document.getElementById("hero-spin-frame");
+
+      if (!spinRoot || !spinImage) {
+        return;
+      }
+
+      var currentFrame = 0;
+      var autoDirection = 1;
+      var autoplayTimer = null;
+      var isDragging = false;
+      var lastPointerX = 0;
+      var activeBasePath = BASE_PATHS[0];
+      var preloaded = new Array(FRAME_COUNT);
+
+      function frameName(index) {
+        return "frame" + String(index).padStart(3, "0") + ".jpg";
+      }
+
+      function framePath(index) {
+        return activeBasePath + frameName(index);
+      }
+
+      function wrapFrame(index) {
+        return (index + FRAME_COUNT) % FRAME_COUNT;
+      }
+
+      function renderFrame(index) {
+        currentFrame = wrapFrame(index);
+        var cached = preloaded[currentFrame];
+        spinImage.src = cached ? cached.src : framePath(currentFrame);
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer !== null) {
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayTimer = setInterval(function () {
+          if (isDragging) return;
+          renderFrame(currentFrame + autoDirection);
+        }, ROTATION_INTERVAL_MS);
+      }
+
+      function preloadFrames() {
+        for (var i = 0; i < FRAME_COUNT; i += 1) {
+          var image = new Image();
+          image.src = framePath(i);
+          preloaded[i] = image;
+        }
+      }
+
+      function canLoad(src) {
+        return new Promise(function (resolve) {
+          var probe = new Image();
+          probe.onload = function () { resolve(true); };
+          probe.onerror = function () { resolve(false); };
+          probe.src = src;
+        });
+      }
+
+      async function resolveBasePath() {
+        for (var i = 0; i < BASE_PATHS.length; i += 1) {
+          var candidate = BASE_PATHS[i];
+          var ok = await canLoad(candidate + "frame000.jpg");
+          if (ok) {
+            return candidate;
+          }
+        }
+        return null;
+      }
+
+      function onPointerDown(event) {
+        if (event.button !== undefined && event.button !== 0) return;
+        isDragging = true;
+        spinRoot.classList.add("dragging");
+        lastPointerX = event.clientX;
+        stopAutoplay();
+        if (spinRoot.setPointerCapture) {
+          spinRoot.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function onPointerMove(event) {
+        if (!isDragging) return;
+        var deltaX = event.clientX - lastPointerX;
+        if (Math.abs(deltaX) < DRAG_SENSITIVITY_PX) return;
+
+        var steps = Math.floor(Math.abs(deltaX) / DRAG_SENSITIVITY_PX);
+        var direction = deltaX > 0 ? -1 : 1;
+        autoDirection = direction;
+        renderFrame(currentFrame + (direction * steps));
+        lastPointerX = event.clientX;
+      }
+
+      function endDrag(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        spinRoot.classList.remove("dragging");
+
+        if (
+          event &&
+          typeof event.pointerId === "number" &&
+          spinRoot.releasePointerCapture &&
+          spinRoot.hasPointerCapture(event.pointerId)
+        ) {
+          spinRoot.releasePointerCapture(event.pointerId);
+        }
+
+        startAutoplay();
+      }
+
+      async function init() {
+        var resolved = await resolveBasePath();
+        if (!resolved) {
+          return;
+        }
+
+        activeBasePath = resolved;
+        spinImage.src = framePath(0);
+        preloadFrames();
+        renderFrame(0);
+        startAutoplay();
+      }
+
+      spinRoot.addEventListener("pointerdown", onPointerDown);
+      spinRoot.addEventListener("pointermove", onPointerMove);
+      spinRoot.addEventListener("pointerup", endDrag);
+      spinRoot.addEventListener("pointercancel", endDrag);
+      spinRoot.addEventListener("lostpointercapture", function () { endDrag(); });
+      window.addEventListener("mouseup", endDrag);
+
+      init();
+    })();
+  </script>
+</body>
+</html>
+
