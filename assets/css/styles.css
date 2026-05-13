@@ -2768,3 +2768,45 @@ img {
 .section-head > .section-meta {
   order: 4;
 }
+
+/* Final separator lock:
+   the visible trace is owned by the section header itself, so every section
+   gets the same title/subtitle-to-content separation even if legacy rules touch
+   the old divider span. */
+.section-head,
+.lp-section-pain .section-head,
+.lp-section-promise .section-head,
+.lp-content-section .section-head {
+  border-bottom: 0 !important;
+}
+
+.section-head > .section-divider,
+.lp-section-pain .section-head > .section-divider,
+.lp-section-promise .section-head > .section-divider,
+.lp-content-section .section-head > .section-divider {
+  display: none !important;
+}
+
+.section-head::after,
+.lp-section-pain .section-head::after,
+.lp-section-promise .section-head::after,
+.lp-content-section .section-head::after {
+  content: "";
+  order: 99;
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: clamp(10px, 1.2vw, 15px);
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 95, 134, 0.98),
+    rgba(255, 95, 134, 0.36) 45%,
+    rgba(78, 197, 255, 0.72)
+  );
+  box-shadow:
+    0 0 18px rgba(250, 30, 78, 0.2),
+    0 0 14px rgba(78, 197, 255, 0.16);
+  opacity: 1;
+  visibility: visible;
+}
