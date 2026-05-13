@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca de Prompts IA</title>
+  <meta
+    name="description"
+    content="Biblioteca pessoal para organizar, visualizar e copiar prompts de IA com busca e filtros por tema.">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/prompts-library.css">
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <main class="prompt-library-page">
+    <header class="prompt-library-hero" aria-labelledby="library-title">
+      <p class="prompt-library-kicker">Ferramenta Pessoal</p>
+      <h1 id="library-title">Biblioteca de Prompts IA</h1>
+      <p class="prompt-library-subtitle">Organize, visualize e copie seus prompts com facilidade</p>
+
+      <div class="prompt-library-toolbar" role="search">
+        <label for="promptSearch" class="prompt-search-field">
+          <span class="prompt-search-label">Buscar prompts</span>
+          <input
+            id="promptSearch"
+            name="promptSearch"
+            type="search"
+            placeholder="Pesquisar por título, tema ou palavra-chave"
+            autocomplete="off">
+        </label>
+
+        <div class="prompt-filter-group" id="promptFilters" aria-label="Filtros por tema"></div>
+      </div>
+    </header>
+
+    <section class="prompt-library-content" aria-live="polite">
+      <div class="prompt-library-meta">
+        <p id="promptCount" class="prompt-count">0 prompts encontrados</p>
+      </div>
+
+      <div class="prompt-grid" id="promptGrid"></div>
+
+      <div id="emptyState" class="prompt-empty" hidden>
+        <h2>Nenhum prompt encontrado</h2>
+        <p>Tente outro termo de busca ou selecione um tema diferente.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./assets/js/prompts-library.js" defer></script>
+</body>
+</html>

@@ -13,9 +13,12 @@
 <body>
   <div class="page-noise" aria-hidden="true"></div>
   <main class="lp-page" id="topo">
-    <header class="lp-hero hero motion-section" data-section="hero" aria-labelledby="hero-title">
+    <header class="lp-hero motion-section" data-section="hero" aria-labelledby="hero-title">
       <div class="hero-bg-layer">
-        <figure class="hero-visual">
+        <figure
+          class="hero-visual"
+          tabindex="0"
+          aria-label="Visual 360 do efeito de montagem automotiva.">
           <img
             id="hero-spin-frame"
             class="hero-visual-media"
@@ -26,12 +29,13 @@
             loading="eager"
             decoding="async"
             fetchpriority="high">
+          <p class="hero-spin-hint" data-spin-hint>Arraste para girar</p>
         </figure>
       </div>
 
       <div class="hero-overlay-layer" aria-hidden="true"></div>
 
-      <div class="container hero-layout">
+      <div class="hero-layout">
         <div class="hero-content">
           <p class="kicker hero-kicker">Videoaulas: Efeito Montagem Gradual</p>
           <h1 id="hero-title" class="hero-title">Como Criar V&iacute;deos Profissionais com IA do Zero</h1>
@@ -46,16 +50,16 @@
 
           <ul class="hero-benefits" aria-label="Recursos">
             <li class="benefit-tooltip">
-              <button type="button" class="badge badge-live badge-btn">Acesso Imediato</button>
-              <span class="benefit-text" role="tooltip">Acesse o conte&uacute;do na hora e comece a aplicar sem esperar.</span>
+              <button type="button" class="badge badge-live badge-btn" aria-describedby="benefit-tip-imediato">Acesso Imediato</button>
+              <span id="benefit-tip-imediato" class="benefit-text" role="tooltip">Acesse o conte&uacute;do na hora e comece a aplicar sem esperar.</span>
             </li>
             <li class="benefit-tooltip">
-              <button type="button" class="badge badge-labs badge-btn">M&eacute;todo Pr&aacute;tico</button>
-              <span class="benefit-text" role="tooltip">Aprenda fazendo, com um m&eacute;todo simples para aplicar junto com as aulas.</span>
+              <button type="button" class="badge badge-labs badge-btn" aria-describedby="benefit-tip-metodo">M&eacute;todo Pr&aacute;tico</button>
+              <span id="benefit-tip-metodo" class="benefit-text" role="tooltip">Aprenda fazendo, com um m&eacute;todo simples para aplicar junto com as aulas.</span>
             </li>
             <li class="benefit-tooltip">
-              <button type="button" class="badge badge-safe badge-btn">Passo a Passo</button>
-              <span class="benefit-text" role="tooltip">Do zero ao resultado com um processo claro, direto e f&aacute;cil de seguir.</span>
+              <button type="button" class="badge badge-safe badge-btn" aria-describedby="benefit-tip-passo">Passo a Passo</button>
+              <span id="benefit-tip-passo" class="benefit-text" role="tooltip">Do zero ao resultado com um processo claro, direto e f&aacute;cil de seguir.</span>
             </li>
           </ul>
         </div>
@@ -65,42 +69,48 @@
     <section class="lp-section-pain motion-section section-layout" data-section="pain" aria-labelledby="dor-title">
       <header class="section-head">
         <h2 id="dor-title" class="section-title">Por Que Seus V&iacute;deos Ainda N&atilde;o Chamam Aten&ccedil;&atilde;o (Mesmo Tentando Melhorar)</h2>
-        <span class="section-divider" aria-hidden="true"></span>
         <p class="section-subtitle">
           Se isso acontece com voc&ecirc; hoje, &eacute; exatamente aqui que a virada come&ccedil;a.
         </p>
+        <span class="section-divider" aria-hidden="true"></span>
+        <p class="section-meta">Passe o mouse ou toque nos blocos para ver como cada ponto evolui com o m&eacute;todo.</p>
       </header>
 
       <ul class="pain-grid">
-        <li class="card pain-card" tabindex="0">
-          <p class="pain-before">&#10060; Seus v&iacute;deos passam despercebidos e sem impacto visual.</p>
+        <li class="card pain-card" tabindex="0" data-step="1">
+          <p class="pain-before"><span class="pain-label pain-label-problem">Problema</span> Seus v&iacute;deos passam despercebidos e sem impacto visual.</p>
           <p class="pain-after">
-            &#10004; Seus v&iacute;deos passam a prender aten&ccedil;&atilde;o logo nos primeiros segundos.
+            <span class="pain-label pain-label-solution">Como fica</span> Seus v&iacute;deos passam a prender aten&ccedil;&atilde;o logo nos primeiros segundos.
             <small>Depois de aplicar o m&eacute;todo.</small>
           </p>
         </li>
-        <li class="card pain-card" tabindex="0">
-          <p class="pain-before">&#10060; Falta criatividade na hora de montar efeitos que impressionam.</p>
+        <li class="card pain-card" tabindex="0" data-step="2">
+          <p class="pain-before"><span class="pain-label pain-label-problem">Problema</span> Falta criatividade na hora de montar efeitos que impressionam.</p>
           <p class="pain-after">
-            &#10004; Voc&ecirc; cria efeitos com dire&ccedil;&atilde;o clara e resultado profissional.
+            <span class="pain-label pain-label-solution">Como fica</span> Voc&ecirc; cria efeitos com dire&ccedil;&atilde;o clara e resultado profissional.
             <small>Com processo simples para repetir.</small>
           </p>
         </li>
-        <li class="card pain-card" tabindex="0">
-          <p class="pain-before">&#10060; Horas de edi&ccedil;&atilde;o sem consist&ecirc;ncia e sem padr&atilde;o de qualidade.</p>
+        <li class="card pain-card" tabindex="0" data-step="3">
+          <p class="pain-before"><span class="pain-label pain-label-problem">Problema</span> Horas de edi&ccedil;&atilde;o sem consist&ecirc;ncia e sem padr&atilde;o de qualidade.</p>
           <p class="pain-after">
-            &#10004; Voc&ecirc; economiza tempo com um fluxo direto, organizado e aplic&aacute;vel.
+            <span class="pain-label pain-label-solution">Como fica</span> Voc&ecirc; economiza tempo com um fluxo direto, organizado e aplic&aacute;vel.
             <small>Menos tentativa e erro, mais execu&ccedil;&atilde;o.</small>
           </p>
         </li>
-        <li class="card pain-card" tabindex="0">
-          <p class="pain-before">&#10060; Sensa&ccedil;&atilde;o de ficar para tr&aacute;s enquanto outros evoluem com IA.</p>
+        <li class="card pain-card" tabindex="0" data-step="4">
+          <p class="pain-before"><span class="pain-label pain-label-problem">Problema</span> Sensa&ccedil;&atilde;o de ficar para tr&aacute;s enquanto outros evoluem com IA.</p>
           <p class="pain-after">
-            &#10004; Voc&ecirc; assume posi&ccedil;&atilde;o de destaque com v&iacute;deos que valorizam seu trabalho.
+            <span class="pain-label pain-label-solution">Como fica</span> Voc&ecirc; assume posi&ccedil;&atilde;o de destaque com v&iacute;deos que valorizam seu trabalho.
             <small>Isso &eacute; o que come&ccedil;a a acontecer ap&oacute;s o curso.</small>
           </p>
         </li>
       </ul>
+
+      <p class="pain-progress" aria-live="polite">
+        Etapa <span class="pain-progress-current" data-pain-progress-current>1</span> de
+        <span class="pain-progress-total" data-pain-progress-total>4</span>
+      </p>
 
       <aside class="pain-quote" role="note" aria-label="Dica estrat&eacute;gica">
         <span class="pain-tip-label">Dica estrat&eacute;gica</span>
@@ -109,6 +119,42 @@
 
       <div class="cta-row pain-cta">
         <a class="btn btn-primary" href="#comprar">Eu N&atilde;o Quero Ficar Para Tr&aacute;s</a>
+      </div>
+    </section>
+
+    <section class="lp-section-promise motion-section section-layout" data-section="promise" aria-labelledby="promessa-title">
+      <header class="section-head">
+        <h2 id="promessa-title" class="section-title">O Que Est&aacute; Por Tr&aacute;s dos V&iacute;deos Que Realmente Prendem Aten&ccedil;&atilde;o</h2>
+        <span class="section-divider" aria-hidden="true"></span>
+        <p class="section-subtitle">Transforme sua edi&ccedil;&atilde;o e entregue v&iacute;deos com n&iacute;vel profissional.</p>
+      </header>
+
+      <div class="promise-grid" role="list">
+        <article class="card promise-card" role="listitem">
+          <h3>Criar Efeitos Profissionais</h3>
+          <p>Aprenda a montar cenas que parecem de editor avan&ccedil;ado, mesmo come&ccedil;ando do zero.</p>
+        </article>
+        <article class="card promise-card" role="listitem">
+          <h3>Usar IA de Forma Simples</h3>
+          <p>Voc&ecirc; vai entender como gerar material visual com prompts prontos, sem complica&ccedil;&atilde;o t&eacute;cnica.</p>
+        </article>
+        <article class="card promise-card" role="listitem">
+          <h3>Economizar Tempo</h3>
+          <p>Pare de ficar horas testando aleatoriamente. Tenha um caminho claro para executar r&aacute;pido.</p>
+        </article>
+        <article class="card promise-card" role="listitem">
+          <h3>Se Destacar no Mercado</h3>
+          <p>Entregue uma qualidade que chama aten&ccedil;&atilde;o e te posiciona acima da m&eacute;dia.</p>
+        </article>
+      </div>
+
+      <article class="promise-highlight">
+        <p class="promise-highlight-kicker">Mesmo Come&ccedil;ando do Zero</p>
+        <p class="promise-highlight-text">Voc&ecirc; n&atilde;o precisa dominar IA antes. O m&eacute;todo foi pensado para iniciantes e intermedi&aacute;rios que querem evoluir de verdade.</p>
+      </article>
+
+      <div class="cta-row promise-cta">
+        <a class="btn btn-primary" href="#comprar">Quero Essa Transforma&ccedil;&atilde;o</a>
       </div>
     </section>
 
