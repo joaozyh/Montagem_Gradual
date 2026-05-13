@@ -3,12 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.add("motion-pending");</script>
+  <script>
+    document.documentElement.classList.add("motion-pending");
+    window.setTimeout(function revealIfScriptsFail() {
+      document.documentElement.classList.remove("motion-pending");
+    }, 3500);
+  </script>
   <title>Landing-Page-GSAP | Videoaulas de Montagem Automotiva com IA</title>
   <meta
     name="description"
     content="Como Criar V&iacute;deos Profissionais com IA do Zero: landing page com arquitetura limpa e preparada para GSAP + ScrollTrigger.">
-  <link rel="stylesheet" href="./assets/css/styles.css">
+  <style>
+    body {
+      margin: 0;
+      background: #06070d;
+      color: #f2f3fb;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <link rel="stylesheet" href="./assets/css/styles.css?v=20260513">
 </head>
 <body>
   <div class="page-noise" aria-hidden="true"></div>
@@ -125,8 +138,8 @@
     <section class="lp-section-promise motion-section section-layout" data-section="promise" aria-labelledby="promessa-title">
       <header class="section-head">
         <h2 id="promessa-title" class="section-title">O Que Est&aacute; Por Tr&aacute;s dos V&iacute;deos Que Realmente Prendem Aten&ccedil;&atilde;o</h2>
-        <span class="section-divider" aria-hidden="true"></span>
         <p class="section-subtitle">Transforme sua edi&ccedil;&atilde;o e entregue v&iacute;deos com n&iacute;vel profissional.</p>
+        <span class="section-divider" aria-hidden="true"></span>
       </header>
 
       <div class="promise-grid" role="list">
@@ -158,11 +171,214 @@
       </div>
     </section>
 
-    <span id="comprar" class="anchor-target" aria-hidden="true"></span>
+    <!-- Secao: conteudo incluso -->
+    <section class="lp-content-section lp-section-includes motion-section section-layout" data-section="inclui" data-animate-section aria-labelledby="inclui-title">
+      <header class="section-head">
+        <h2 id="inclui-title" class="section-title">Tudo Que Voc&ecirc; Precisa Para Criar V&iacute;deos Profissionais (Mesmo do Zero)</h2>
+        <p class="section-subtitle">Conte&uacute;do objetivo para voc&ecirc; aprender, aplicar e evoluir rapidamente.</p>
+        <span class="section-divider" aria-hidden="true"></span>
+      </header>
+
+      <div class="content-grid feature-grid" role="list">
+        <article class="card feature-card" role="listitem" data-reveal>
+          <p class="feature-number">01</p>
+          <h3>Videoaulas Completas</h3>
+          <p>M&oacute;dulo por m&oacute;dulo, sem pular etapa.</p>
+        </article>
+        <article class="card feature-card" role="listitem" data-reveal>
+          <p class="feature-number">02</p>
+          <h3>Passo a Passo Detalhado</h3>
+          <p>Acompanhe exatamente o que fazer em cada parte do processo.</p>
+        </article>
+        <article class="card feature-card" role="listitem" data-reveal>
+          <p class="feature-number">03</p>
+          <h3>Explica&ccedil;&atilde;o Simples das IAs</h3>
+          <p>Voc&ecirc; entende o essencial sem linguagem t&eacute;cnica complicada.</p>
+        </article>
+        <article class="card feature-card" role="listitem" data-reveal>
+          <p class="feature-number">04</p>
+          <h3>Prompts Prontos</h3>
+          <p>Copie e cole para gerar resultados com agilidade.</p>
+        </article>
+        <article class="card feature-card" role="listitem" data-reveal>
+          <p class="feature-number">05</p>
+          <h3>Estrutura Organizada</h3>
+          <p>Aprendizado em sequ&ecirc;ncia para evitar confus&atilde;o.</p>
+        </article>
+        <article class="card feature-card" role="listitem" data-reveal>
+          <p class="feature-number">06</p>
+          <h3>Aplica&ccedil;&atilde;o Direta</h3>
+          <p>Foco total em montar efeitos automotivos que realmente impressionam.</p>
+        </article>
+      </div>
+
+      <div class="cta-row section-cta" data-reveal>
+        <a class="btn btn-primary" href="#comprar">Quero Acesso ao Conte&uacute;do Completo</a>
+      </div>
+    </section>
+
+    <!-- Secao: publico ideal -->
+    <section class="lp-content-section lp-section-fit motion-section section-layout" data-section="fit" data-animate-section aria-labelledby="objecoes-title">
+      <header class="section-head">
+        <h2 id="objecoes-title" class="section-title">Isso Funciona Pra Voc&ecirc;? Veja Se Voc&ecirc; Se Encaixa Aqui</h2>
+        <p class="section-subtitle">Entenda claramente se esse treinamento &eacute; para voc&ecirc;.</p>
+        <span class="section-divider" aria-hidden="true"></span>
+      </header>
+
+      <div class="fit-grid">
+        <article class="card audience-card is-positive" data-reveal>
+          <p class="card-kicker">Para quem &eacute;</p>
+          <h3>O treinamento encaixa bem para</h3>
+          <ul class="signal-list">
+            <li>Iniciantes que querem sair do b&aacute;sico.</li>
+            <li>Editores intermedi&aacute;rios travados na criatividade.</li>
+            <li>Quem quer dominar IA sem enrola&ccedil;&atilde;o.</li>
+          </ul>
+        </article>
+
+        <article class="card audience-card is-negative" data-reveal>
+          <p class="card-kicker">Para quem n&atilde;o &eacute;</p>
+          <h3>Talvez n&atilde;o seja o momento se</h3>
+          <ul class="signal-list">
+            <li>Voc&ecirc; procura atalho sem aplicar nada.</li>
+            <li>Voc&ecirc; n&atilde;o est&aacute; disposto a praticar.</li>
+            <li>Voc&ecirc; quer resultado sem executar o m&eacute;todo.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="cta-row section-cta" data-reveal>
+        <a class="btn btn-primary" href="#comprar">Sou o P&uacute;blico Certo</a>
+      </div>
+    </section>
+
+    <!-- Secao: resultado esperado -->
+    <section class="lp-content-section lp-section-outcome motion-section section-layout" data-section="outcome" data-animate-section aria-labelledby="emocional-title">
+      <header class="section-head">
+        <h2 id="emocional-title" class="section-title">Como Seus V&iacute;deos V&atilde;o Parecer Depois Que Voc&ecirc; Aplicar Isso</h2>
+        <p class="section-subtitle">Mais que t&eacute;cnica: reconhecimento, confian&ccedil;a e evolu&ccedil;&atilde;o profissional.</p>
+        <span class="section-divider" aria-hidden="true"></span>
+      </header>
+
+      <div class="content-grid outcome-grid" role="list">
+        <article class="card outcome-card" role="listitem" data-step="01" data-reveal>
+          <span class="card-glow-dot" aria-hidden="true"></span>
+          <h3>Impressione com Seu N&iacute;vel</h3>
+          <p>Imagine mostrar seus v&iacute;deos e ouvir: &quot;Como voc&ecirc; fez isso?&quot;.</p>
+        </article>
+        <article class="card outcome-card" role="listitem" data-step="02" data-reveal>
+          <span class="card-glow-dot" aria-hidden="true"></span>
+          <h3>Ganhe Mais Engajamento</h3>
+          <p>Cenas mais impactantes aumentam reten&ccedil;&atilde;o, coment&aacute;rios e compartilhamentos.</p>
+        </article>
+        <article class="card outcome-card" role="listitem" data-step="03" data-reveal>
+          <span class="card-glow-dot" aria-hidden="true"></span>
+          <h3>Cres&ccedil;a Como Editor</h3>
+          <p>Destrave seu potencial e construa autoridade no que voc&ecirc; entrega.</p>
+        </article>
+      </div>
+
+      <div class="cta-row section-cta" data-reveal>
+        <a class="btn btn-primary" href="#comprar">Quero Evoluir de Verdade</a>
+      </div>
+    </section>
+
+    <!-- Secao: oferta -->
+    <section id="comprar" class="lp-content-section lp-section-offer motion-section section-layout" data-section="offer" data-animate-section aria-labelledby="oferta-title">
+      <header class="section-head">
+        <h2 id="oferta-title" class="section-title">O Atalho Para Sair do B&aacute;sico e Criar V&iacute;deos de Alto N&iacute;vel</h2>
+        <p class="section-subtitle">M&eacute;todo validado para acelerar seu resultado e te diferenciar no mercado.</p>
+        <span class="section-divider" aria-hidden="true"></span>
+      </header>
+
+      <div class="offer-layout">
+        <article class="card offer-value-card" data-reveal>
+          <p class="card-kicker">Valor percebido</p>
+          <h3>O que voc&ecirc; leva para a pr&aacute;tica</h3>
+          <ul class="signal-list">
+            <li>M&eacute;todo validado para cria&ccedil;&atilde;o de efeitos automotivos.</li>
+            <li>Economia de tempo com fluxo claro de produ&ccedil;&atilde;o.</li>
+            <li>Diferencial competitivo para se destacar.</li>
+          </ul>
+        </article>
+
+        <aside class="offer-box" data-reveal aria-label="Oferta">
+          <p class="offer-label">Investimento de Hoje</p>
+          <p class="offer-price">R$ ___,__</p>
+          <p class="offer-installments">ou em at&eacute; 12x de R$ __,__</p>
+          <div class="cta-row offer-cta">
+            <a class="btn btn-primary" href="#comprar">Garantir Minha Vaga Agora</a>
+          </div>
+          <p class="cta-note">Acesso imediato ap&oacute;s confirma&ccedil;&atilde;o.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Secao: urgencia -->
+    <section class="lp-content-section lp-section-urgency motion-section section-layout" data-section="urgency" data-animate-section aria-labelledby="escassez-title">
+      <header class="section-head">
+        <h2 id="escassez-title" class="section-title">Voc&ecirc; Pode Ignorar Isso... Ou Aproveitar Enquanto Ainda Est&aacute; Dispon&iacute;vel</h2>
+        <p class="section-subtitle">Essa condi&ccedil;&atilde;o n&atilde;o precisa ficar dispon&iacute;vel para sempre.</p>
+        <span class="section-divider" aria-hidden="true"></span>
+      </header>
+
+      <article class="urgency-note" data-reveal>
+        <p class="urgency-quote">O acesso pode sair do ar sem aviso e o pre&ccedil;o pode aumentar a qualquer momento.</p>
+        <p class="urgency-lead">Se voc&ecirc; quer entrar com a melhor condi&ccedil;&atilde;o, o momento certo &eacute; agora.</p>
+      </article>
+
+      <div class="cta-row section-cta" data-reveal>
+        <a class="btn btn-primary" href="#comprar">Garantir Antes Que Suba</a>
+      </div>
+    </section>
+
+    <!-- Secao: decisao final -->
+    <section class="lp-content-section lp-section-final motion-section section-layout" data-section="final" data-animate-section aria-labelledby="final-title">
+      <header class="section-head">
+        <h2 id="final-title" class="section-title">A Diferen&ccedil;a Entre Continuar Travado ou Evoluir Come&ccedil;a Aqui</h2>
+        <p class="section-subtitle">Escolha entre continuar travado ou dar o pr&oacute;ximo passo na sua evolu&ccedil;&atilde;o.</p>
+        <span class="section-divider" aria-hidden="true"></span>
+      </header>
+
+      <div class="final-comparison">
+        <article class="card final-card is-negative" data-reveal>
+          <p class="card-kicker">Continuar travado</p>
+          <h3>O que fica igual</h3>
+          <ul class="signal-list">
+            <li>V&iacute;deos sem impacto e sem diferencial.</li>
+            <li>Horas perdidas em tentativa e erro.</li>
+            <li>Sensa&ccedil;&atilde;o constante de estar atrasado.</li>
+          </ul>
+        </article>
+
+        <article class="card final-card is-positive" data-reveal>
+          <p class="card-kicker">Evoluir agora</p>
+          <h3>O que muda quando voc&ecirc; aplica</h3>
+          <ul class="signal-list">
+            <li>Efeitos profissionais com m&eacute;todo replic&aacute;vel.</li>
+            <li>Uso pr&aacute;tico de IA, mesmo sem experi&ecirc;ncia.</li>
+            <li>Mais destaque, engajamento e confian&ccedil;a.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="cta-row section-cta" data-reveal>
+        <a class="btn btn-primary" href="#comprar">Quero Acessar as Videoaulas e Evoluir Hoje</a>
+      </div>
+      <p class="cta-note final-note" data-reveal>Sem enrola&ccedil;&atilde;o. Sem mist&eacute;rio. S&oacute; o passo a passo para voc&ecirc; aplicar e crescer.</p>
+    </section>
+
+    <!-- Rodape -->
+    <footer class="lp-footer motion-section" data-section="footer" data-animate-section>
+      <div class="footer-inner" data-reveal>
+        <p>Landing page de vendas pronta para produ&ccedil;&atilde;o.</p>
+        <p>Base visual alinhada ao design system em <code>legacy/references/design-system.html</code>.</p>
+      </div>
+    </footer>
   </main>
 
-  <script src="./assets/libs/gsap.min.js" defer></script>
-  <script src="./assets/libs/ScrollTrigger.min.js" defer></script>
-  <script src="./assets/js/main.js" defer></script>
+  <script src="./assets/libs/gsap.min.js?v=20260513" defer></script>
+  <script src="./assets/libs/ScrollTrigger.min.js?v=20260513" defer></script>
+  <script src="./assets/js/main.js?v=20260513" defer></script>
 </body>
 </html>

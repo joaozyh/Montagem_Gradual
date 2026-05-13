@@ -33,7 +33,6 @@
       heroSpinHint: "[data-spin-hint]",
       painSection: ".lp-section-pain",
       painTitle: ".lp-section-pain .section-title",
-      painDivider: ".lp-section-pain .section-divider",
       painSubtitle: ".lp-section-pain .section-subtitle",
       painCards: ".lp-section-pain .pain-card",
       painProgress: ".lp-section-pain .pain-progress",
@@ -43,7 +42,6 @@
       painProgressTotal: "[data-pain-progress-total]",
       promiseSection: ".lp-section-promise",
       promiseTitle: ".lp-section-promise .section-title",
-      promiseDivider: ".lp-section-promise .section-divider",
       promiseSubtitle: ".lp-section-promise .section-subtitle",
       promiseGrid: ".lp-section-promise .promise-grid",
       promiseCards: ".lp-section-promise .promise-card",
@@ -60,7 +58,6 @@
     const heroSpinHint = document.querySelector(selectors.heroSpinHint);
     const painSection = document.querySelector(selectors.painSection);
     const painTitle = document.querySelector(selectors.painTitle);
-    const painDivider = document.querySelector(selectors.painDivider);
     const painSubtitle = document.querySelector(selectors.painSubtitle);
     const painCards = gsapLib.utils.toArray(selectors.painCards);
     const painProgress = document.querySelector(selectors.painProgress);
@@ -70,13 +67,15 @@
     const painProgressTotal = document.querySelector(selectors.painProgressTotal);
     const promiseSection = document.querySelector(selectors.promiseSection);
     const promiseTitle = document.querySelector(selectors.promiseTitle);
-    const promiseDivider = document.querySelector(selectors.promiseDivider);
     const promiseSubtitle = document.querySelector(selectors.promiseSubtitle);
     const promiseGrid = document.querySelector(selectors.promiseGrid);
     const promiseCards = gsapLib.utils.toArray(selectors.promiseCards);
     const promiseHighlight = document.querySelector(selectors.promiseHighlight);
     const promiseCta = document.querySelector(selectors.promiseCta);
     const motionSections = gsapLib.utils.toArray(".motion-section");
+    const genericSections = gsapLib.utils.toArray("[data-animate-section]").filter((section) => (
+      section !== heroSection && section !== painSection && section !== promiseSection
+    ));
     const isCoarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
     if (DEBUG) {
@@ -90,7 +89,6 @@
         heroSpinHint: Boolean(heroSpinHint),
         painSection: Boolean(painSection),
         painTitle: Boolean(painTitle),
-        painDivider: Boolean(painDivider),
         painSubtitle: Boolean(painSubtitle),
         painCards: painCards.length,
         painProgress: Boolean(painProgress),
@@ -100,13 +98,13 @@
         painProgressTotal: Boolean(painProgressTotal),
         promiseSection: Boolean(promiseSection),
         promiseTitle: Boolean(promiseTitle),
-        promiseDivider: Boolean(promiseDivider),
         promiseSubtitle: Boolean(promiseSubtitle),
         promiseGrid: Boolean(promiseGrid),
         promiseCards: promiseCards.length,
         promiseHighlight: Boolean(promiseHighlight),
         promiseCta: Boolean(promiseCta),
-        motionSections: motionSections.length
+        motionSections: motionSections.length,
+        genericSections: genericSections.length
       };
       log("info", "Diagnostico de seletores", selectorCheck);
     }
@@ -876,9 +874,8 @@
     );
 
     // Secoes seguintes: animacao por scroll (segunda secao).
-    if (painSection && painTitle && painDivider && painSubtitle && painCards.length && painQuote && painCta) {
+    if (painSection && painTitle && painSubtitle && painCards.length && painQuote && painCta) {
       gsapLib.set(painTitle, { autoAlpha: 0, y: 40 });
-      gsapLib.set(painDivider, { autoAlpha: 0.25, scaleX: 0 });
       gsapLib.set(painSubtitle, { autoAlpha: 0, y: 32 });
       gsapLib.set(painCards, {
         autoAlpha: 0,
@@ -913,18 +910,13 @@
             y: 0,
             duration: 0.56
           }, 0)
-          .to(painDivider, {
-            autoAlpha: 1,
-            scaleX: 1,
-            duration: 0.42
-          }, 0.16)
           .to(painSubtitle, {
             autoAlpha: 1,
             y: 0,
             duration: 0.5
-          }, 0.26);
+          }, 0.18);
 
-        let cursor = 0.42;
+        let cursor = 0.36;
         painCards.forEach((card, index) => {
           painTimeline
             .to(card, {
@@ -977,7 +969,7 @@
       log("warn", "Segunda secao sem seletores completos para ScrollTrigger.");
     }
 
-    if (promiseSection && promiseTitle && promiseDivider && promiseSubtitle && promiseGrid && promiseCards.length && promiseHighlight && promiseCta) {
+    if (promiseSection && promiseTitle && promiseSubtitle && promiseGrid && promiseCards.length && promiseHighlight && promiseCta) {
       promiseOrbitControl = setupPromiseCardOrbit({
         section: promiseSection,
         grid: promiseGrid,
@@ -1017,7 +1009,6 @@
       });
 
       gsapLib.set(promiseTitle, { autoAlpha: 0, y: 34 });
-      gsapLib.set(promiseDivider, { autoAlpha: 0.3, scaleX: 0 });
       gsapLib.set(promiseSubtitle, { autoAlpha: 0, y: 24 });
       gsapLib.set(promiseCards, { autoAlpha: 0, scale: 0.98, transformOrigin: "50% 50%" });
       gsapLib.set(promiseHighlight, { autoAlpha: 0, y: 24, scale: 0.985, transformOrigin: "50% 50%" });
@@ -1044,40 +1035,35 @@
             y: 0,
             duration: 0.62
           }, 0)
-          .to(promiseDivider, {
-            autoAlpha: 1,
-            scaleX: 1,
-            duration: 0.48
-          }, 0.18)
           .to(promiseSubtitle, {
             autoAlpha: 1,
             y: 0,
             duration: 0.56
-          }, 0.28)
+          }, 0.2)
           .to(promiseCards, {
             autoAlpha: 1,
             scale: 1,
             duration: 0.48,
             stagger: { each: 0.16, from: "start" }
-          }, 0.4)
+          }, 0.34)
           .to(promiseHighlight, {
             autoAlpha: 1,
             y: 0,
             scale: 1,
             duration: 0.52
-          }, 0.94)
+          }, 0.88)
           .to(promiseCta, {
             autoAlpha: 1,
             y: 0,
             scale: 1,
             duration: 0.48,
             ease: "back.out(1.08)"
-          }, 1.08)
+          }, 1.02)
           .add(() => {
             if (promiseOrbitControl) {
               promiseOrbitControl.play();
             }
-          }, 0.98);
+          }, 0.92);
       };
 
       media.add(
@@ -1096,6 +1082,100 @@
       ROOT.dataset.lpGsapPromise = "missing-selectors";
       log("warn", "Terceira secao sem seletores completos para ScrollTrigger.");
     }
+
+    const setupGenericSectionAnimation = (section) => {
+      const title = section.querySelector(":scope .section-title");
+      const subtitle = section.querySelector(":scope .section-subtitle");
+      const revealItems = gsapLib.utils.toArray(section.querySelectorAll(":scope [data-reveal]"));
+
+      if (!title && !subtitle && !revealItems.length) {
+        return false;
+      }
+
+      if (title) {
+        gsapLib.set(title, { autoAlpha: 0, y: 34 });
+      }
+
+      if (subtitle) {
+        gsapLib.set(subtitle, { autoAlpha: 0, y: 24 });
+      }
+
+      if (revealItems.length) {
+        gsapLib.set(revealItems, {
+          autoAlpha: 0,
+          y: 24,
+          scale: 0.985,
+          transformOrigin: "50% 50%"
+        });
+      }
+
+      const buildTimeline = (isDesktop) => {
+        const timeline = gsapLib.timeline({
+          defaults: {
+            ease: "power2.out"
+          },
+          scrollTrigger: {
+            trigger: section,
+            start: isDesktop ? "top 82%" : "top 90%",
+            toggleActions: "play none none none",
+            once: true,
+            invalidateOnRefresh: true,
+            fastScrollEnd: true
+          }
+        });
+
+        let cursor = 0;
+
+        if (title) {
+          timeline.to(title, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.62
+          }, cursor);
+          cursor += 0.18;
+        }
+
+        if (subtitle) {
+          timeline.to(subtitle, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.52
+          }, cursor);
+          cursor += 0.16;
+        }
+
+        if (revealItems.length) {
+          timeline.to(revealItems, {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            stagger: {
+              each: isDesktop ? 0.12 : 0.09,
+              from: "start"
+            }
+          }, Math.max(cursor, 0.34));
+        }
+      };
+
+      media.add(
+        {
+          desktop: "(min-width: 901px)",
+          mobile: "(max-width: 900px)"
+        },
+        (context) => {
+          buildTimeline(Boolean(context.conditions.desktop));
+        }
+      );
+
+      return true;
+    };
+
+    const animatedGenericSections = genericSections.filter(setupGenericSectionAnimation);
+    ROOT.dataset.lpGsapGeneric = animatedGenericSections.length ? "scroll-ready" : "no-sections";
+    log("info", "Secoes genericas configuradas com ScrollTrigger.", {
+      count: animatedGenericSections.length
+    });
 
     const refreshAll = () => {
       if (promiseOrbitControl) {

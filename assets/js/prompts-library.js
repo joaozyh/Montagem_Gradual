@@ -621,8 +621,16 @@
 
   const inferPromptTags = (item) => {
     const source = normalizeText(`${item.title} ${item.description}`);
+    const sourceTokens = ` ${source.replace(/[^a-z0-9]+/g, " ")} `;
     const tags = new Set();
-    const has = (value) => source.includes(value);
+    const has = (value) => {
+      const token = normalizeText(value).replace(/[^a-z0-9]+/g, " ").trim();
+      if (!token) {
+        return false;
+      }
+
+      return sourceTokens.includes(` ${token} `);
+    };
 
     if (item.category === "Camera") {
       tags.add("Camera");
@@ -742,6 +750,52 @@
     tags: inferPromptTags(item)
   }));
 
+  const promptImageExtensions = [".jpeg", ".jpg", ".webp", ".png"];
+
+  const buildReferenceImageCandidates = (title) => {
+    const baseTitle = title.trim();
+    const candidateStems = Array.from(
+      new Set([
+        baseTitle,
+        baseTitle.replace(/\s*\/\s*/g, "  "),
+        baseTitle.replace(/\s*\/\s*/g, " - "),
+        baseTitle.replace(/\s*\/\s*/g, " ")
+      ])
+    );
+
+    return candidateStems.flatMap((stem) =>
+      promptImageExtensions.map((extension) => encodeURI(`./assets/images/Prompts/${stem}${extension}`))
+    );
+  };
+
+  const setReferenceImage = (image, item, placeholderSrc) => {
+    const candidates = buildReferenceImageCandidates(item.title);
+    if (!candidates.length) {
+      image.src = placeholderSrc;
+      return;
+    }
+
+    let candidateIndex = 0;
+    const cleanup = () => {
+      image.removeEventListener("error", handleError);
+    };
+
+    const handleError = () => {
+      if (candidateIndex < candidates.length) {
+        image.src = candidates[candidateIndex];
+        candidateIndex += 1;
+        return;
+      }
+
+      cleanup();
+      image.src = placeholderSrc;
+    };
+
+    image.addEventListener("error", handleError);
+    image.addEventListener("load", cleanup, { once: true });
+    handleError();
+  };
+
   const buildFilterButtons = () => {
     const availableFilters = filterOrder.filter(
       (filter) => filter === "Todos" || promptsCatalog.some((item) => item.tags.includes(filter))
@@ -851,7 +905,8 @@
     image.className = "prompt-card-image";
     image.loading = "lazy";
     image.decoding = "async";
-    image.src = buildPlaceholder(item.imageLabel, item.colors[0], item.colors[1]);
+    const placeholderSrc = buildPlaceholder(item.imageLabel, item.colors[0], item.colors[1]);
+    setReferenceImage(image, item, placeholderSrc);
     image.alt = `Imagem de referência para ${item.title}`;
 
     figure.appendChild(image);
