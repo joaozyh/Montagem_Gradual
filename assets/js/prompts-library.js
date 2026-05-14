@@ -750,7 +750,7 @@
     tags: inferPromptTags(item)
   }));
 
-  const promptImageExtensions = [".jpeg", ".jpg", ".webp", ".png"];
+  const promptImageExtensions = [".webp"];
 
   const buildReferenceImageCandidates = (title) => {
     const baseTitle = title.trim();
@@ -905,6 +905,9 @@
     image.className = "prompt-card-image";
     image.loading = "lazy";
     image.decoding = "async";
+    image.fetchPriority = "low";
+    image.width = 1000;
+    image.height = 1000;
     const placeholderSrc = buildPlaceholder(item.imageLabel, item.colors[0], item.colors[1]);
     setReferenceImage(image, item, placeholderSrc);
     image.alt = `Imagem de referência para ${item.title}`;

@@ -3578,3 +3578,196 @@ img {
     line-height: 1.18;
   }
 }
+
+/* Final mobile performance and breathing pass. */
+.hero-lead,
+.section-head .section-subtitle,
+.section-head .section-meta,
+.pain-before,
+.pain-after,
+.promise-card p,
+.feature-card p,
+.audience-card p,
+.outcome-card p,
+.offer-value-card p,
+.final-card p,
+.promise-highlight-text,
+.urgency-lead,
+.signal-list,
+.cta-note {
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.hero-title,
+.section-head .section-title,
+.section-head h2 {
+  text-wrap: balance;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .motion-section.is-scene-active,
+  .motion-section.is-scene-near,
+  .lp-section-pain.is-scene-active .pain-card,
+  .lp-section-pain.is-scene-near .pain-card,
+  .lp-section-promise.is-scene-active .promise-card,
+  .lp-section-promise.is-scene-near .promise-card,
+  .lp-content-section.is-scene-active [data-reveal],
+  .lp-content-section.is-scene-near [data-reveal],
+  .lp-footer.is-scene-active [data-reveal],
+  .lp-footer.is-scene-near [data-reveal] {
+    will-change: auto;
+  }
+
+  .btn:hover,
+  .badge-btn:hover,
+  .pain-card:hover,
+  .prompt-copy-btn:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 780px) {
+  :root {
+    --rhythm-section-gap: 26px;
+    --rhythm-section-padding-y: clamp(42px, 10vw, 58px);
+    --rhythm-after-head: 24px;
+    --rhythm-card-gap: 16px;
+    --rhythm-card-padding: 16px;
+    --rhythm-cta-gap: 22px;
+  }
+
+  .lp-page {
+    width: auto;
+    margin-inline: 6px;
+    padding-bottom: clamp(50px, 12vw, 70px);
+  }
+
+  .motion-section {
+    margin-top: var(--rhythm-section-gap);
+  }
+
+  .lp-hero {
+    margin-top: 12px;
+  }
+
+  .lp-section-pain,
+  .lp-section-promise,
+  .lp-content-section {
+    padding-block: var(--rhythm-section-padding-y);
+    gap: var(--rhythm-after-head);
+  }
+
+  .section-head,
+  .lp-section-pain .section-head,
+  .lp-section-promise .section-head,
+  .lp-content-section .section-head {
+    gap: 12px;
+    padding-bottom: 16px;
+  }
+
+  .section-head::after,
+  .lp-section-pain .section-head::after,
+  .lp-section-promise .section-head::after,
+  .lp-content-section .section-head::after {
+    margin-top: 8px;
+    opacity: 0.9;
+  }
+
+  .hero-content {
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .hero-content h1,
+  .section-head .section-title,
+  .section-head h2,
+  .lp-content-section .section-title {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .hero-content h1 {
+    max-width: 14ch;
+    font-size: clamp(1.45rem, 7.2vw, 1.9rem);
+    line-height: 1.02;
+  }
+
+  .section-head .section-title,
+  .section-head h2,
+  .lp-content-section .section-title {
+    max-width: 14ch;
+    font-size: clamp(1.45rem, 7.2vw, 1.95rem);
+    line-height: 1.12;
+  }
+
+  .hero-lead,
+  .section-head .section-subtitle,
+  .section-head .section-meta,
+  .lp-content-section .section-subtitle,
+  .pain-before,
+  .pain-after,
+  .promise-card p,
+  .feature-card p,
+  .audience-card p,
+  .outcome-card p,
+  .offer-value-card p,
+  .final-card p,
+  .promise-highlight-text,
+  .urgency-lead,
+  .signal-list {
+    line-height: 1.64;
+  }
+
+  .pain-grid,
+  .promise-grid,
+  .content-grid,
+  .feature-grid,
+  .fit-grid,
+  .outcome-grid,
+  .offer-layout,
+  .final-comparison {
+    gap: var(--rhythm-card-gap);
+  }
+
+  .hero-cta,
+  .pain-cta,
+  .promise-cta,
+  .section-cta,
+  .offer-cta {
+    margin-top: var(--rhythm-cta-gap);
+  }
+
+  .lp-content-section::before {
+    opacity: 0.18;
+  }
+
+  .lp-content-section::after {
+    opacity: 0.26;
+  }
+
+  .hero-benefits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+  }
+
+  .hero-benefits .benefit-tooltip,
+  .hero-benefits .benefit-tooltip:last-child {
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .hero-benefits .benefit-tooltip:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .hero-benefits .badge {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+}

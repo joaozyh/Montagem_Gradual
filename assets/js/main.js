@@ -711,7 +711,9 @@
           hintEl.textContent = isCoarsePointer ? "Deslize para explorar" : "Arraste para girar";
           window.setTimeout(() => {
             if (!hasUserInteracted) {
-              hintEl.textContent = isCoarsePointer ? "Animacao 360 automatica" : "Use as setas para explorar";
+              hintEl.textContent = prefersReducedMotion
+                ? "Use as setas para explorar"
+                : (isCoarsePointer ? "Animacao 360 automatica" : "Use as setas para explorar");
             }
           }, 3800);
         }
@@ -897,7 +899,11 @@
         mobile: "(max-width: 900px)"
       },
       (context) => {
-        buildSectionSceneFlow(Boolean(context.conditions.desktop));
+        if (context.conditions.desktop) {
+          buildSectionSceneFlow(true);
+        } else {
+          ROOT.dataset.lpGsapSceneFlow = "mobile-static";
+        }
         buildSectionFocus(Boolean(context.conditions.desktop));
 
         return () => {
